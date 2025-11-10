@@ -1,6 +1,8 @@
 <?php
 
-class Conexion_database
+namespace App\Models;
+
+class ConexionDatabase
 {
     private $mySQLI;
     private $sql;
@@ -9,9 +11,9 @@ class Conexion_database
 
     public function conect()
     {
-        $this->mySQLI = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $this->mySQLI = new \mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         if ($this->mySQLI->connect_error) {
-            throw new Exception("Error de conexión a la base de datos: " . $this->mySQLI->connect_error);
+            throw new \Exception("Error de conexión a la base de datos: " . $this->mySQLI->connect_error);
         }
         // No mostrar mensajes de conexión en producción
         // echo "Conectado a la base de datos";

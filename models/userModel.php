@@ -1,12 +1,14 @@
 <?php
 
-class User
+namespace App\Models;
+
+class UserModel
 {
 
-    private $password;
+
     public function validateUser($data)
     {
-        $conexion = new Conexion_database();
+        $conexion = new ConexionDatabase();
         $conexion->conect();
         $stmt = $conexion->prepare("SELECT * FROM users WHERE correo = ?");
         if (!$stmt) {
@@ -25,7 +27,7 @@ class User
 
     public function registerUser($data)
     {
-        $conexion = new Conexion_database();
+        $conexion = new ConexionDatabase();
         $conexion->conect();
 
         $stmt = $conexion->prepare(
@@ -59,7 +61,7 @@ class User
 
     public function getPassword()
     {
-        $conexion = new Conexion_database();
+        $conexion = new ConexionDatabase();
         $conexion->conect();
         $stmt = $conexion->prepare("SELECT * FROM users WHERE correo = ?");
         if (!$stmt) {

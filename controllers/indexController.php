@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Models\UserModel;
+
 class IndexController
 {
     public function showIndex($index)
@@ -16,7 +20,7 @@ class IndexController
             $errors['tipo_documento'] = 'Tipo de documento requerido';
         }
         if (empty(trim($dataV['numero_documento'] ?? ''))) {
-            $errors['numero_document'] = "Documento requerido";
+            $errors['numero_documento'] = "Documento requerido";
         }
         if (empty(trim($dataV['nombre'] ?? ''))) {
             $errors['nombre'] = "Nombre requerido";
@@ -31,7 +35,7 @@ class IndexController
             $errors['email'] = "Correo requerido";
         }
         if (empty(trim($dataV['password'] ?? ''))) {
-            $errors['contraseña'] = "Contraseña requerida";
+            $errors['contrasena'] = "Contraseña requerida";
         } else if (strlen(trim($dataV['password'])) < 6) {
             $errors['contrasena'] = 'La contraseña debe contener al menos 6 caracteres';
         }
@@ -47,13 +51,15 @@ class IndexController
         $errors = $this->validateData($dataR);
         if (count($errors) > 0) {
             $_SESSION['errors'] = $errors;
-            $_SESSION['old'] = $dataR;
+            $old = $dataR;
+            if (isset($old['password'])) unset($old['password']);
+            $_SESSION['old'] = $old;
 
             header('Location: ' . SITE_URL . 'index.php?action=registerUser');
             exit;
         }
 
-        $user = new User();
+        $user = new UserModel();
         $existe = $user->validateUser($dataR);
         if ($existe !== null) {
             $_SESSION['errors'] = ['general' => 'El ususario ya existe.'];

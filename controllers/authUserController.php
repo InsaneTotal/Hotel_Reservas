@@ -1,20 +1,24 @@
 <?php
 
-class AuthUser
+namespace App\Controllers;
+
+use App\Models\UserModel;
+
+class AuthUserController
 {
     public function validateEmail($data)
     {
 
-        $user = new User();
+        $user = new UserModel();
         $result = $user->validateUser($data);
         if ($result !== null) {
             if (password_verify($data['password'], $result['contrasena'])) {
                 $_SESSION['mensaje'] = 'Usuario conectado';
-                $_SESSION['user_id'] = $data['num_document'];
+                $_SESSION['user_data'] = ['id' => $result['id'], 'full_name' => $result['nombre'] . " " . $result['apellido'], 'email' => $result['correo']];
                 header('Location: index.php');
                 exit;
             } else {
-                $_SESSION['mensaje'] = 'Usuario no conectado';
+                $_SESSION['mensaje'] = 'Contraseña incorrecta';
                 header('Location: index.php?action=loginUser');
                 exit;
             }

@@ -1,0 +1,21 @@
+{
+  "name": "jseba/hotel_reservas",
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "controllers/",
+      "App\\Models\\": "models/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Sebastian Arciniegas",
+      "email": "carroloco83@gmail.com"
+    }
+  ],
+  "require": {
+    "ext-gd": "*",
+    "ext-fileinfo": "*",
+    "phpoffice/phpspreadsheet": "^5.1",
+    "phpmailer/phpmailer": "^7.0"
+  }
+}

@@ -2,34 +2,84 @@
 
 session_start();
 
-require_once "controllers/index.controller.php";
-require_once "config/config.php";
-require_once "models/conexion.database.php";
-require_once "models/user.model.php";
-require_once "controllers/createUser.controller.php";
 
-$indexController = new IndexController();
-$authController = new AuthUser();
-// 
 
-if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'registerUser') {
+require_once __DIR__ . "/config/config.php";
+require_once __DIR__ . "/vendor/autoload.php";
+require_once "lib/fpdf/fpdf.php";
+
+
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer\PHPMailer\PHPMailer();
+$indexController = new \App\Controllers\IndexController();
+$authController = new \App\Controllers\AuthUserController();
+$logoutController = new \App\Controllers\LogoutController();
+$newReController = new \App\Controllers\NewReController();
+$roomsController = new \App\Controllers\RoomsController();
+$reservationListController = new \App\Controllers\ReservationListController();
+$excelController = new \App\Controllers\ExcelController();
+$mailController = new \App\Controllers\MailController();
+$editeController = new \App\Controllers\EditeController();
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+
+switch ($_GET['action'] ?? null) {
+    case 'reservaData':
+        $reservationListController->getReservationData($_POST['reserva_id']);
+        break;
+    case 'enviarEmail':
+        $mailController->sendReservationEmail($_POST['user_id']);
+        break;
+    case 'generarexcel':
+        $excelController->generateExcel();
+        break;
+    case 'mostrarreservas':
+        $indexController->showIndex("views/html/auth/reservationList.php");
+        break;
+    case 'createReservation':
+        $newReController->createReservation($_POST);
+        break;
+    case 'nuevareserva':
+        $indexController->showIndex("views/html/auth/newReservation.php");
+        break;
+    case 'editarReserva':
+        $editeController->updateReservation($_POST);
+        break;
+    case 'getAvailableRooms':
+        $roomsController->getAvailableRooms($_POST['nameRoom']);
+        break;
+    case 'reservationForm':
+        $indexController->showIndex("views/html/auth/newReservation.php");
+        break;
+    case 'misreservas':
+        $reservationListController->getUserReservations();
+        break;
+    case 'registerUser':
         $indexController->showIndex("views/html/auth/register.php");
-    }
-    if ($_GET['action'] == 'loginUser') {
+        break;
+    case 'loginUser':
         $indexController->showIndex("views/html/auth/login.php");
-    }
-    if ($_GET['action'] == 'createUser') {
+        break;
+    case 'createUser':
         $indexController->registerUser($_POST);
-    }
-    if ($_GET['action'] == 'validateUser') {
+        break;
+    case 'validateUser':
         $authController->validateEmail($_POST);
-    }
-} else {
-    // Aquí puedes manejar el caso cuando el usuario está autenticado
-    // Por ejemplo, redirigir a una página de dashboard o similar
-    $indexController->showIndex("views/html/home.php");
-    // header("Location: views/html/dashboard.php"); // Descomenta esta línea para redirigir
+        break;
+    case 'validateReservation':
+        $newReController->createReservation($_POST);
+        break;
+    case 'logout':
+        $logoutController->logOut();
+        break;
+    default:
+        unset($_SESSION['errors'], $_SESSION['old']);
+        $indexController->showIndex("views/html/home.php");
+        break;
 }
 
 
