@@ -21,6 +21,7 @@ $reservationListController = new \App\Controllers\ReservationListController();
 $excelController = new \App\Controllers\ExcelController();
 $mailController = new \App\Controllers\MailController();
 $editeController = new \App\Controllers\EditeController();
+$deleteController = new \App\Controllers\DeleteController();
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -48,6 +49,9 @@ switch ($_GET['action'] ?? null) {
         break;
     case 'editarReserva':
         $editeController->updateReservation($_POST);
+        break;
+    case 'eliminarReserva':
+        $deleteController->deleteReservation($_GET['id']);
         break;
     case 'getAvailableRooms':
         $roomsController->getAvailableRooms($_POST['nameRoom']);

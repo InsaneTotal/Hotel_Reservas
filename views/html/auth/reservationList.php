@@ -20,8 +20,8 @@ include_once "views/html/layouts/header.php";
         <div class="card">
             <div class="card-body">
                 <h2 class="mb-4">Mis Reservas</h2>
-                <a class="btn btn-success" href="<?= SITE_URL ?>index.php?action=generarexcel" target="_blank">Generar Excel</a>
-                <a class="btn btn-danger" href="<?= SITE_URL ?>index.php?action=generarpdf" target="_blank">Generar PDF</a>
+                <a class="btn btn-success" href="<?= SITE_URL ?>index.php?action=generarexcel" target="_blank">Excel <i class="bi bi-file-earmark-excel"></i></a>
+                <a class="btn btn-danger" href="<?= SITE_URL ?>index.php?action=generarpdf" target="_blank">PDF <i class="bi bi-file-earmark-pdf"></i></a>
                 <table class="table">
                     <thead>
                         <tr>
