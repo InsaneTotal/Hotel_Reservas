@@ -16,41 +16,38 @@
 
     ?>
 
-    <div class="container mt-4">
-        <h1>Bienvenido a la pagina de reservas en linea</h1>
-        <br>
+    <div class=" container mt-4">
+        <div class="header-text text-center">
+            <h3>Bienvenido a la pagina de reservas en linea</h3>
+        </div>
 
-        <?php if (isset($_SESSION['user_data'])): ?>
-            <p>Hola, <?php echo $_SESSION['user_data']['full_name']; ?>. Bienvenido de nuevo.</p>
-            <div class="d-flex gap-2">
-                <div class="d-inline-block" style="width: 120px; height: 38px;">
-                    <a class="btn btn-info w-100 h-100 d-flex align-items-center justify-content-center" href="http://localhost/HOTEL_RESERVAS/index.php?action=misreservas">Mis reservas</a>
+
+
+        <div id="carouselExampleFade" class="rounded mt-4 mb-4 carousel slide carousel-fade">
+            <div class="carousel-inner rounded-5" style="height: 600px;">
+                <div class="carousel-item active">
+                    <img src="views/img/Habitacion-101-doble.jpg" class="d-block w-100 h-100" alt="...">
                 </div>
-
-                <div class="d-inline-block" style="width: 120px; height: 38px;">
-                    <a class="btn btn-danger w-100 h-100 d-flex align-items-center justify-content-center" href="http://localhost/HOTEL_RESERVAS/index.php?action=logout">Cerrar sesión</a>
+                <div class="carousel-item">
+                    <img src="views/img/Habitacion-102-sencilla.jpg" class="d-block w-100 h-100" alt="...">
                 </div>
-
-
-
+                <div class="carousel-item">
+                    <img src="views/img/Habitacion-507-multiple.png" class="d-block w-100 h-100" alt="...">
+                </div>
             </div>
-        <?php else: ?>
-            <p>Por favor, inicia sesión para acceder a tus reservas.</p>
-            <div class="d-flex gap-2">
-                <div class="d-inline-block" style="width: 120px; height: 38px;">
-                    <a class="btn btn-danger w-100 h-100 d-flex align-items-center justify-content-center" href="http://localhost/HOTEL_RESERVAS/index.php?action=loginUser">Ingresar</a>
-                </div>
-
-                <div class="d-inline-block" style="width: 120px; height: 38px;">
-                    <a class="btn btn-success w-100 h-100 d-flex align-items-center justify-content-center" href="http://localhost/HOTEL_RESERVAS/index.php?action=registerUser">Registrarme</a>
-                </div>
-
-
-
-            </div>
-        <?php endif; ?>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
     </div>
+
+
 
 
     <!-- Aquí va el contenido principal de la página -->

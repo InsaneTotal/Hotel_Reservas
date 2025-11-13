@@ -6,10 +6,10 @@ session_start();
 
 require_once __DIR__ . "/config/config.php";
 require_once __DIR__ . "/vendor/autoload.php";
-require_once "lib/fpdf/fpdf.php";
 
 
-use PHPMailer\PHPMailer\Exception;
+
+
 
 $mail = new PHPMailer\PHPMailer\PHPMailer();
 $indexController = new \App\Controllers\IndexController();
@@ -22,6 +22,7 @@ $excelController = new \App\Controllers\ExcelController();
 $mailController = new \App\Controllers\MailController();
 $editeController = new \App\Controllers\EditeController();
 $deleteController = new \App\Controllers\DeleteController();
+$pdfController = new \App\Controllers\PdfController();
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -37,6 +38,9 @@ switch ($_GET['action'] ?? null) {
         break;
     case 'generarexcel':
         $excelController->generateExcel();
+        break;
+    case 'generarpdf':
+        $pdfController->generatePDF();
         break;
     case 'mostrarreservas':
         $indexController->showIndex("views/html/auth/reservationList.php");

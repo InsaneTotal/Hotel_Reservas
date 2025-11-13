@@ -16,6 +16,7 @@
     "ext-gd": "*",
     "ext-fileinfo": "*",
     "phpoffice/phpspreadsheet": "^5.1",
-    "phpmailer/phpmailer": "^7.0"
+    "phpmailer/phpmailer": "^7.0",
+    "tecnickcom/tcpdf": "^6.10"
   }
 }
