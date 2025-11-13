@@ -123,7 +123,7 @@ include_once 'views/html/Layouts/header.php';
                         </button>
                     </div>
                     <div class="text-center text-link mt-2">
-                        <span>¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a></span>
+                        <span>¿Ya tienes cuenta? <a href="<?= SITE_URL ?>index.php?action=loginUser">Inicia sesión</a></span>
                     </div>
                 </form>
             </div>
