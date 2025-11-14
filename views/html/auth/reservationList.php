@@ -17,7 +17,7 @@ include_once "views/html/layouts/header.php";
 
 <body class="d-flex flex-column min-vh-100">
     <div class="container">
-        <div class="card">
+        <div class="card mt-4 mb-4 shadow   ">
             <div class="card-body">
                 <h2 class="mb-4">Mis Reservas</h2>
                 <a class="btn btn-success" href="<?= SITE_URL ?>index.php?action=generarexcel" target="_blank">Excel <i class="bi bi-file-earmark-excel"></i></a>
